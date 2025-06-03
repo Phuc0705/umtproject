@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxury Auto & Moto</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="scripts.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><i class="fas fa-car"></i> Luxury Auto & Moto</h1>
+      <nav>
+        <ul>
+          <li><a href="#" onclick="backToList()">Trang chủ</a></li>
+          <li><a href="#" onclick="filterVehicles('car')">Xe Ô Tô</a></li>
+          <li><a href="#" onclick="filterVehicles('motorbike')">Xe Mô Tô</a></li>
+          <li><a href="#contact">Liên hệ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="car-list" class="grid">
+      <!-- Cars -->
+      <div class="card" data-type="car" onclick="showDetails('ferrari')">
+        <img src="assets/img/ferrari.jpg" alt="Ferrari">
+        <div class="card-body">
+          <h3>Ferrari SF90</h3>
+          <p>Giá: $500,000</p>
+        </div>
+      </div>
+      <div class="card" data-type="car" onclick="showDetails('lamborghini')">
+        <img src="assets/img/lamborghini.jpg" alt="Lamborghini">
+        <div class="card-body">
+          <h3>Lamborghini Aventador</h3>
+          <p>Giá: $600,000</p>
+        </div>
+      </div>
+      <!-- Motorbikes -->
+      <div class="card" data-type="motorbike" onclick="showDetails('ducati')">
+        <img src="assets/img/ducati.jpg" alt="Ducati">
+        <div class="card-body">
+          <h3>Ducati Panigale V4</h3>
+          <p>Giá: $35,000</p>
+        </div>
+      </div>
+      <div class="card" data-type="motorbike" onclick="showDetails('bmw')">
+        <img src="assets/img/bmw.jpg" alt="BMW">
+        <div class="card-body">
+          <h3>BMW S1000RR</h3>
+          <p>Giá: $30,000</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="car-detail" class="hidden">
+      <div class="container">
+        <button class="back-btn" onclick="backToList()"><i class="fas fa-arrow-left"></i> Trở lại danh sách</button>
+        <div id="car-info" class="car-info"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <h2>Liên hệ với chúng tôi</h2>
+        <form id="contact-form">
+          <label for="name">Tên của bạn</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="message">Nội dung</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <button type="submit">Gửi</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Luxury Auto & Moto. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="chatbot">
+    <div id="chat-header">Trợ lý AI <i class="fas fa-robot"></i></div>
+    <div id="chat-log"></div>
+    <input type="text" id="chat-input" placeholder="Bạn cần hỗ trợ gì?">
+  </div>
+</body>
+</html>
