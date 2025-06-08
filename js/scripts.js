@@ -1,96 +1,131 @@
-// Hiển thị chi tiết xe
-function showDetails(carId) {
-  document.getElementById("car-list").classList.add("hidden");
-  document.getElementById("car-detail").classList.remove("hidden");
+// Initialize AOS
+AOS.init({
+  duration: 1000,
+  once: true,
+});
 
-  let content = "";
-  if (carId === "ferrari") {
-    content = `
-      <h2>Ferrari SF90</h2>
-      <img src="assets/img/ferrari.jpg" style="width:100%; max-width:600px; border-radius: 10px;">
-      <ul>
-        <li>Động cơ Hybrid V8</li>
-        <li>Tốc độ tối đa: 340km/h</li>
-        <li>AWD, 986 mã lực</li>
-        <li>Giá: $500,000</li>
-      </ul>
-    `;
-  } else if (carId === "ducati") {
-    content = `
-      <h2>Ducati Panigale V4</h2>
-      <img src="assets/img/ducati.jpg" style="width:100%; max-width:600px; border-radius: 10px;">
-      <ul>
-        <li>Dung tích 1103cc</li>
-        <li>Tốc độ tối đa: 300km/h</li>
-        <li>Phanh Brembo, siêu nhẹ</li>
-        <li>Giá: $35,000</li>
-      </ul>
-    `;
-  } else if (carId === "lamborghini") {
-    content = `
-      <h2>Lamborghini Aventador</h2>
-      <img src="assets/img/lamborghini.jpg" style="width:100%; max-width:600px; border-radius: 10px;">
-      <ul>
-        <li>Động cơ V12</li>
-        <li>Tốc độ tối đa: 350km/h</li>
-        <li>Hệ dẫn động 4 bánh</li>
-        <li>Giá: $600,000</li>
-      </ul>
-    `;
-  } else if (carId === "bmw") {
-    content = `
-      <h2>BMW S1000RR</h2>
-      <img src="assets/img/bmw.jpg" style="width:100%; max-width:600px; border-radius: 10px;">
-      <ul>
-        <li>Dung tích 999cc</li>
-        <li>Tốc độ tối đa: 299km/h</li>
-        <li>Công nghệ ShiftCam</li>
-        <li>Giá: $30,000</li>
-      </ul>
-    `;
-  }
-
-  document.getElementById("car-info").innerHTML = content;
-}
-
-// Quay lại danh sách
-function backToList() {
-  document.getElementById("car-detail").classList.add("hidden");
-  document.getElementById("car-list").classList.remove("hidden");
-}
-
-// Lọc loại xe
-function filterVehicles(type) {
-  const cards = document.querySelectorAll(".card");
-  cards.forEach((card) => {
-    if (type === "all" || card.dataset.type === type) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  });
-}
-
-// Chatbot mô phỏng
-const input = document.getElementById("chat-input");
-input.addEventListener("keypress", function (e) {
-  if (e.key === "Enter" && input.value.trim()) {
-    const msg = input.value.trim();
-    const log = document.getElementById("chat-log");
-    log.innerHTML += `<div class="chat-msg user-msg"><strong>Bạn:</strong> ${msg}</div>`;
-    setTimeout(() => {
-      log.innerHTML += `<div class="chat-msg bot-msg"><strong>AI:</strong> Cảm ơn bạn! Chúng tôi sẽ hỗ trợ sớm nhất.</div>`;
-      log.scrollTop = log.scrollHeight;
-    }, 500);
-    input.value = "";
+// Back to Top Button
+const backToTop = document.getElementById("backToTop");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.classList.add("active");
+  } else {
+    backToTop.classList.remove("active");
   }
 });
 
-// Gửi form liên hệ (mô phỏng)
-document
-  .getElementById("contact-form")
-  ?.addEventListener("submit", function (e) {
-    e.preventDefault();
-    alert("Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi qua email.");
-    this.reset();
-  });
+backToTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Chatbot Functionality
+const chatbotContainer = document.getElementById("chatbotContainer");
+const chatbotToggle = document.getElementById("chatbotToggle");
+const closeChatbot = document.getElementById("closeChatbot");
+const chatbotForm = document.getElementById("chatbotForm");
+const chatbotInput = document.getElementById("chatbotInput");
+const chatbotMessages = document.getElementById("chatbotMessages");
+
+chatbotToggle.addEventListener("click", () => {
+  chatbotContainer.style.display =
+    chatbotContainer.style.display === "none" ? "block" : "none";
+});
+
+closeChatbot.addEventListener("click", () => {
+  chatbotContainer.style.display = "none";
+});
+
+chatbotForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const userMessage = chatbotInput.value.trim();
+  if (userMessage) {
+    const userMsgElement = document.createElement("div");
+    userMsgElement.className = "message user-message";
+    userMsgElement.textContent = userMessage;
+    chatbotMessages.appendChild(userMsgElement);
+
+    // Simple bot response
+    const botMsgElement = document.createElement("div");
+    botMsgElement.className = "message bot-message";
+    botMsgElement.textContent =
+      "Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.";
+    chatbotMessages.appendChild(botMsgElement);
+
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    chatbotInput.value = "";
+  }
+});
+
+// Vehicle Details Function
+function showDetails(vehicle) {
+  let title, price, horsepower, fuel, origin;
+
+  switch (vehicle) {
+    case "ferrari":
+      title = "Ferrari SF90 Stradale";
+      price = "2.5 tỷ VND";
+      horsepower = "1000 mã lực";
+      fuel = "Xăng";
+      origin = "Nhập khẩu";
+      break;
+    case "lamborghini":
+      title = "Lamborghini Aventador";
+      price = "12.8 tỷ VND";
+      horsepower = "770 mã lực";
+      fuel = "Xăng";
+      origin = "Nhập khẩu";
+      break;
+    case "porsche":
+      title = "Porsche 911 Turbo S";
+      price = "6.5 tỷ VND";
+      horsepower = "650 mã lực";
+      fuel = "Xăng";
+      origin = "Nhập khẩu";
+      break;
+    case "bentley":
+      title = "Bentley Continental GT";
+      price = "8.9 tỷ VND";
+      horsepower = "626 mã lực";
+      fuel = "Xăng";
+      origin = "Nhập khẩu";
+      break;
+    case "ducati":
+      title = "Ducati Panigale V4";
+      price = "1.2 tỷ VND";
+      horsepower = "214 mã lực";
+      fuel = "Xăng";
+      origin = "Nhập khẩu";
+      break;
+    case "bmw":
+      title = "BMW M8 Competition";
+      price = "5.8 tỷ VND";
+      horsepower = "625 mã lực";
+      fuel = "Xăng";
+      origin = "Nhập khẩu";
+      break;
+    default:
+      return;
+  }
+
+  document.getElementById("modalVehicleTitle").textContent = title;
+  document.getElementById("modalVehiclePrice").textContent = price;
+  document.getElementById("modalVehicleHorsepower").textContent = horsepower;
+  document.getElementById("modalVehicleFuel").textContent = fuel;
+  document.getElementById("modalVehicleOrigin").textContent = origin;
+
+  const modal = new bootstrap.Modal(document.getElementById("vehicleModal"));
+  modal.show();
+}
+
+// Form Submission Handlers
+document.getElementById("testDriveForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  alert("Đăng ký lái thử thành công! Chúng tôi sẽ liên hệ với bạn sớm.");
+  e.target.reset();
+});
+
+document.getElementById("contactForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  alert("Tin nhắn của bạn đã được gửi! Chúng tôi sẽ phản hồi sớm.");
+  e.target.reset();
+});

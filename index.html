@@ -1,99 +1,624 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luxury Auto & Moto</title>
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="scripts.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Car & Moto - Siêu Xe Cao Cấp</title>
+    
+    <!-- Meta tags SEO -->
+    <meta name="description" content="Luxury CarCar & Moto - Đại lý siêu xe cao cấp hàng đầu Việt Nam. Chuyên mua bán, trao đổi các dòng xe sang, xe thể thao cao cấp.">
+    <meta name="keywords" content="siêu xe, xe sang, luxury car, mua bán xe, xe cao cấp">
+    <meta name="author" content="Luxury Car & Moto">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1><i class="fas fa-car"></i> Luxury Auto & Moto</h1>
-      <nav>
-        <ul>
-          <li><a href="#" onclick="backToList()">Trang chủ</a></li>
-          <li><a href="#" onclick="filterVehicles('car')">Xe Ô Tô</a></li>
-          <li><a href="#" onclick="filterVehicles('motorbike')">Xe Mô Tô</a></li>
-          <li><a href="#contact">Liên hệ</a></li>
-        </ul>
-      </nav>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="#">LUXURY CAR & MOTO</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#vehicles">Xe đang bán</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">Dịch vụ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Về chúng tôi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Liên hệ</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content" data-aos="fade-right">
+                <h1>Khám Phá Thế Giới Siêu Xe</h1>
+                <p>Những mẫu xe sang trọng, đẳng cấp nhất thế giới. Trải nghiệm dịch vụ mua bán xe cao cấp hàng đầu Việt Nam.</p>
+                <a href="#vehicles" class="btn btn-primary btn-lg">Xem Ngay</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicle Listing -->
+    <section class="vehicle-section" id="vehicles">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Xe Đang Bán</h2>
+            
+            <div class="row">
+                <!-- Filter Section -->
+                <div class="col-md-3" data-aos="fade-right">
+                    <div class="card mb-4">
+                        <div class="card-header bg-dark text-white">
+                            <h5 class="mb-0">Bộ lọc</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>Loại xe</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-sedan">
+                                <label class="form-check-label" for="filter-sedan">Sedan</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-suv">
+                                <label class="form-check-label" for="filter-suv">SUV</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-coupe">
+                                <label class="form-check-label" for="filter-coupe">Coupe</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-convertible">
+                                <label class="form-check-label" for="filter-convertible">Convertible</label>
+                            </div>
+                            
+                            <hr>
+                            
+                            <h6>Giá</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-price1">
+                                <label class="form-check-label" for="filter-price1">Dưới 1 tỷ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-price2">
+                                <label class="form-check-label" for="filter-price2">1-3 tỷ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-price3">
+                                <label class="form-check-label" for="filter-price3">3-5 tỷ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-price4">
+                                <label class="form-check-label" for="filter-price4">Trên 5 tỷ</label>
+                            </div>
+                            
+                            <hr>
+                            
+                            <h6>Hãng xe</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-ferrari">
+                                <label class="form-check-label" for="filter-ferrari">Ferrari</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-lamborghini">
+                                <label class="form-check-label" for="filter-lamborghini">Lamborghini</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-porsche">
+                                <label class="form-check-label" for="filter-porsche">Porsche</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="filter-bentley">
+                                <label class="form-check-label" for="filter-bentley">Bentley</label>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100 mt-3">Áp dụng</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vehicle List -->
+                <div class="col-md-9">
+                    <div class="row">
+                        <!-- Vehicle 1 -->
+                        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="vehicle-card">
+                                <img src="image/1.jpg" class="vehicle-img" alt="Ferrari SF90">
+                                <div class="vehicle-body">
+                                    <h3 class="vehicle-title">Ferrari SF90 Stradale</h3>
+                                    <p class="vehicle-price">2.5 tỷ VND</p>
+                                    <div class="vehicle-features">
+                                        <div class="feature-item">
+                                            <i class="fas fa-tachometer-alt feature-icon"></i>
+                                            <span>1000 mã lực</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-gas-pump feature-icon"></i>
+                                            <span>Xăng</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-car feature-icon"></i>
+                                            <span>Nhập khẩu</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-outline-dark" onclick="showDetails('ferrari')">Chi tiết</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Vehicle 2 -->
+                        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="vehicle-card">
+                                <img src="image/2.jpg" class="vehicle-img" alt="Lamborghini Aventador">
+                                <div class="vehicle-body">
+                                    <h3 class="vehicle-title">Lamborghini Aventador</h3>
+                                    <p class="vehicle-price">12.8 tỷ VND</p>
+                                    <div class="vehicle-features">
+                                        <div class="feature-item">
+                                            <i class="fas fa-tachometer-alt feature-icon"></i>
+                                            <span>770 mã lực</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-gas-pump feature-icon"></i>
+                                            <span>Xăng</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-car feature-icon"></i>
+                                            <span>Nhập khẩu</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-outline-dark" onclick="showDetails('lamborghini')">Chi tiết</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Vehicle 3 -->
+                        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="vehicle-card">
+                                <img src="image/3.jpg" class="vehicle-img" alt="Porsche 911">
+                                <div class="vehicle-body">
+                                    <h3 class="vehicle-title">Porsche 911 Turbo S</h3>
+                                    <p class="vehicle-price">6.5 tỷ VND</p>
+                                    <div class="vehicle-features">
+                                        <div class="feature-item">
+                                            <i class="fas fa-tachometer-alt feature-icon"></i>
+                                            <span>650 mã lực</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-gas-pump feature-icon"></i>
+                                            <span>Xăng</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-car feature-icon"></i>
+                                            <span>Nhập khẩu</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-outline-dark" onclick="showDetails('porsche')">Chi tiết</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Vehicle 4 -->
+                        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                            <div class="vehicle-card">
+                                <img src="image/4.jpg" class="vehicle-img" alt="Bentley Continental">
+                                <div class="vehicle-body">
+                                    <h3 class="vehicle-title">Bentley Continental GT</h3>
+                                    <p class="vehicle-price">8.9 tỷ VND</p>
+                                    <div class="vehicle-features">
+                                        <div class="feature-item">
+                                            <i class="fas fa-tachometer-alt feature-icon"></i>
+                                            <span>626 mã lực</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-gas-pump feature-icon"></i>
+                                            <span>Xăng</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-car feature-icon"></i>
+                                            <span>Nhập khẩu</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-outline-dark" onclick="showDetails('bentley')">Chi tiết</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Vehicle 5 -->
+                        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                            <div class="vehicle-card">
+                                <img src="image/5.jpg" class="vehicle-img" alt="Ducati Panigale">
+                                <div class="vehicle-body">
+                                    <h3 class="vehicle-title">Ducati Panigale V4</h3>
+                                    <p class="vehicle-price">1.2 tỷ VND</p>
+                                    <div class="vehicle-features">
+                                        <div class="feature-item">
+                                            <i class="fas fa-tachometer-alt feature-icon"></i>
+                                            <span>214 mã lực</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-gas-pump feature-icon"></i>
+                                            <span>Xăng</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-motorcycle feature-icon"></i>
+                                            <span>Nhập khẩu</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-outline-dark" onclick="showDetails('ducati')">Chi tiết</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Vehicle 6 -->
+                        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                            <div class="vehicle-card">
+                                <img src="image/6.jpg" class="vehicle-img" alt="BMW M8">
+                                <div class="vehicle-body">
+                                    <h3 class="vehicle-title">BMW M8 Competition</h3>
+                                    <p class="vehicle-price">5.8 tỷ VND</p>
+                                    <div class="vehicle-features">
+                                        <div class="feature-item">
+                                            <i class="fas fa-tachometer-alt feature-icon"></i>
+                                            <span>625 mã lực</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-gas-pump feature-icon"></i>
+                                            <span>Xăng</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <i class="fas fa-car feature-icon"></i>
+                                            <span>Nhập khẩu</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-outline-dark" onclick="showDetails('bmw')">Chi tiết</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation" class="mt-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Trước</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Tiếp</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="test-drive" id="services">
+        <div class="container">
+            <h2 class="section-title text-white" data-aos="fade-up">Dịch Vụ Của Chúng Tôi</h2>
+            
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <i class="fas fa-car fa-3x mb-3 text-primary"></i>
+                            <h4>Đăng Ký Lái Thử</h4>
+                            <p>Trải nghiệm cảm giác lái siêu xe thực thụ với dịch vụ lái thử chuyên nghiệp của chúng tôi.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <i class="fas fa-hand-holding-usd fa-3x mb-3 text-primary"></i>
+                            <h4>Mua Bán - Trao Đổi</h4>
+                            <p>Dịch vụ mua bán, trao đổi xe cao cấp với giá cả cạnh tranh nhất thị trường.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <i class="fas fa-tools fa-3x mb-3 text-primary"></i>
+                            <h4>Bảo Dưỡng - Sửa Chữa</h4>
+                            <p>Đội ngũ kỹ thuật viên chuyên nghiệp với trang thiết bị hiện đại nhất.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title">Về Luxury Auto & Moto</h2>
+                    <p>Luxury Car & Moto là đại lý chuyên phân phối các dòng xe cao cấp, siêu xe hàng đầu thế giới tại Việt Nam. Với hơn 10 năm kinh nghiệm trong lĩnh vực mua bán xe cao cấp, chúng tôi tự hào mang đến cho khách hàng những sản phẩm chất lượng cùng dịch vụ chuyên nghiệp nhất.</p>
+                    <p>Đội ngũ nhân viên giàu kinh nghiệm, am hiểu sâu sắc về xe sẽ tư vấn giúp bạn lựa chọn được chiếc xe phù hợp nhất với nhu cầu và phong cách của mình.</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <img src="assets/img/showroom.jpg" class="img-fluid rounded" alt="Showroom Luxury Car & Moto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Drive Form -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Đăng Ký Lái Thử</h2>
+            
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <img src="assets/img/test-drive.jpg" class="img-fluid rounded" alt="Test Drive">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <form id="testDriveForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Số điện thoại</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carModel" class="form-label">Dòng xe quan tâm</label>
+                            <select class="form-select" id="carModel" required>
+                                <option value="" selected disabled>Chọn dòng xe</option>
+                                <option value="ferrari">Ferrari SF90 Stradale</option>
+                                <option value="lamborghini">Lamborghini Aventador</option>
+                                <option value="porsche">Porsche 911 Turbo S</option>
+                                <option value="bentley">Bentley Continental GT</option>
+                                <option value="ducati">Ducati Panigale V4</option>
+                                <option value="bmw">BMW M8 Competition</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Ngày hẹn</label>
+                            <input type="date" class="form-control" id="date" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Đăng Ký Ngay</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Liên Hệ</h2>
+            
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="mb-4">Thông Tin Liên Hệ</h4>
+                            <div class="mb-3">
+                                <i class="fas fa-map-marker-alt me-2"></i>
+                                <span>60, Quận 2, TP.HCM</span>
+                            </div>
+                            <div class="mb-3">
+                                <i class="fas fa-phone-alt me-2"></i>
+                                <span>077******5</span>
+                            </div>
+                            <div class="mb-3">
+                                <i class="fas fa-envelope me-2"></i>
+                                <span>info@luxurycarmoto.com</span>
+                            </div>
+                            <div class="mb-3">
+                                <i class="fas fa-clock me-2"></i>
+                                <span>Mở cửa: 8:00 - 20:00 hàng ngày</span>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h5>Theo dõi chúng tôi</h5>
+                                <div class="social-icons">
+                                    <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" class="me-3"><i class="fab fa-youtube"></i></a>
+                                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="mb-4">Gửi Tin Nhắn</h4>
+                            <form id="contactForm">
+                                <div class="mb-3">
+                                    <label for="contactName" class="form-label">Họ và tên</label>
+                                    <input type="text" class="form-control" id="contactName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contactPhone" class="form-label">Số điện thoại</label>
+                                    <input type="tel" class="form-control" id="contactPhone" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contactEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="contactEmail">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contactMessage" class="form-label">Nội dung</label>
+                                    <textarea class="form-control" id="contactMessage" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Gửi Tin Nhắn</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map -->
+    <section class="py-0">
+        <div class="container-fluid px-0">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.126365068468!2d106.7122763152606!3d10.8018348923046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a459cb43ab%3A0x6c3d29d370b52a7e!2sHilton%20Saigon!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="text-white mb-4">Luxury Car & Moto</h4>
+                    <p>Đại lý phân phối chính thức các dòng xe cao cấp, siêu xe hàng đầu thế giới tại Việt Nam.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-white mb-4">Liên Kết</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white">Trang chủ</a></li>
+                        <li class="mb-2"><a href="#vehicles" class="text-white">Xe đang bán</a></li>
+                        <li class="mb-2"><a href="#services" class="text-white">Dịch vụ</a></li>
+                        <li class="mb-2"><a href="#about" class="text-white">Về chúng tôi</a></li>
+                        <li><a href="#contact" class="text-white">Liên hệ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-white mb-4">Hỗ Trợ</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Chính sách bảo hành</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Hướng dẫn mua xe</a></li>
+                        <li><a href="#" class="text-white">Liên hệ hỗ trợ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-white mb-4">Liên Hệ</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>60, Quận 2, TP.HCM</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i>077******5</li>
+                        <li><i class="fas fa-envelope me-2"></i>info@luxurycarmoto.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p class="mb-0">© 2025 Luxury Car & Moto. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
     </div>
-  </header>
 
-  <main>
-    <section id="car-list" class="grid">
-      <!-- Cars -->
-      <div class="card" data-type="car" onclick="showDetails('ferrari')">
-        <img src="assets/img/ferrari.jpg" alt="Ferrari">
-        <div class="card-body">
-          <h3>Ferrari SF90</h3>
-          <p>Giá: $500,000</p>
+    <!-- Chatbot -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <h5 class="mb-0">Hỗ Trợ Trực Tuyến</h5>
+            <button class="btn-close btn-close-white" id="closeChatbot"></button>
         </div>
-      </div>
-      <div class="card" data-type="car" onclick="showDetails('lamborghini')">
-        <img src="assets/img/lamborghini.jpg" alt="Lamborghini">
-        <div class="card-body">
-          <h3>Lamborghini Aventador</h3>
-          <p>Giá: $600,000</p>
+        <div class="chatbot-body" id="chatbotMessages">
+            <div class="message bot-message">Chào bạn! Tôi là trợ lý ảo của Luxury Car & Moto. Bạn cần hỗ trợ gì hôm nay?</div>
         </div>
-      </div>
-      <!-- Motorbikes -->
-      <div class="card" data-type="motorbike" onclick="showDetails('ducati')">
-        <img src="assets/img/ducati.jpg" alt="Ducati">
-        <div class="card-body">
-          <h3>Ducati Panigale V4</h3>
-          <p>Giá: $35,000</p>
+        <div class="chatbot-footer">
+            <form id="chatbotForm">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="chatbotInput" placeholder="Nhập tin nhắn...">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </form>
         </div>
-      </div>
-      <div class="card" data-type="motorbike" onclick="showDetails('bmw')">
-        <img src="assets/img/bmw.jpg" alt="BMW">
-        <div class="card-body">
-          <h3>BMW S1000RR</h3>
-          <p>Giá: $30,000</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="car-detail" class="hidden">
-      <div class="container">
-        <button class="back-btn" onclick="backToList()"><i class="fas fa-arrow-left"></i> Trở lại danh sách</button>
-        <div id="car-info" class="car-info"></div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-      <div class="container">
-        <h2>Liên hệ với chúng tôi</h2>
-        <form id="contact-form">
-          <label for="name">Tên của bạn</label>
-          <input type="text" id="name" name="name" required>
-
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-
-          <label for="message">Nội dung</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
-
-          <button type="submit">Gửi</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Luxury Auto & Moto. All rights reserved.</p>
     </div>
-  </footer>
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-comment"></i>
+    </div>
 
-  <div id="chatbot">
-    <div id="chat-header">Trợ lý AI <i class="fas fa-robot"></i></div>
-    <div id="chat-log"></div>
-    <input type="text" id="chat-input" placeholder="Bạn cần hỗ trợ gì?">
-  </div>
+    <!-- Modal for Vehicle Details -->
+    <div class="modal fade" id="vehicleModal" tabindex="-1" aria-labelledby="vehicleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="vehicleModalLabel">Chi Tiết Xe</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 id="modalVehicleTitle"></h4>
+                    <p><strong>Giá:</strong> <span id="modalVehiclePrice"></span></p>
+                    <p><strong>Mã lực:</strong> <span id="modalVehicleHorsepower"></span></p>
+                    <p><strong>Nhiên liệu:</strong> <span id="modalVehicleFuel"></span></p>
+                    <p><strong>Xuất xứ:</strong> <span id="modalVehicleOrigin"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
