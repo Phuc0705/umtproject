@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Car & Moto - Xe Đang Bán</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #000;
+            overflow-x: hidden;
+        }
+        .navbar {
+            background-color: #000;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand {
+            color: #ffd700;
+            font-size: 24px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .navbar-brand:hover {
+            color: #ffea00;
+        }
+        .nav-link {
+            color: #fff !important;
+            margin-left: 15px;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffd700 !important;
+        }
+        .section-title {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            color: #333;
+        }
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+        .section-title:hover:after {
+            width: 70px;
+        }
+        .filter-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: sticky;
+            top: 20px;
+        }
+        .filter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .filter-card label {
+            font-weight: bold;
+            color: #444;
+        }
+        .filter-card .form-check {
+            margin-bottom: 10px;
+        }
+        .vehicle-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .vehicle-card:hover {
+            transform: translateY(-5px);
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .vehicle-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        .vehicle-card:hover .vehicle-img {
+            transform: scale(1.05);
+        }
+        .vehicle-title {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #222;
+        }
+        .vehicle-price {
+            color: #dc3545;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .vehicle-features {
+            list-style: none;
+            padding: 0;
+        }
+        .vehicle-features .feature-item {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .vehicle-features .feature-icon {
+            color: #ffd700;
+            margin-right: 5px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 5px 10px;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .btn-cart {
+            background-color: #28a745;
+            border: none;
+            padding: 5px 10px;
+            color: #fff;
+            border-radius: 5px;
+            margin-left: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-cart:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        .btn-delete-order, .btn-delete-item {
+            background-color: #dc3545;
+            border: none;
+            padding: 5px 10px;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-delete-order:hover, .btn-delete-item:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+        .btn-clear-cart {
+            background-color: #dc3545;
+            border: none;
+            padding: 5px 10px;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-clear-cart:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+        .pagination {
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination .page-link {
+            color: #007bff;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        .pagination .page-link:hover {
+            color: #fff;
+            background-color: #007bff;
+        }
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+padding: 20px 0;
+            margin-top: 20px;
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ffd700;
+            color: #000;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .back-to-top:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background-color: #007bff;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .chatbot-toggle:hover {
+            background-color: #0056b3;
+            transform: rotate(360deg);
+        }
+        .chatbot-container {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .chatbot-container.active {
+            display: block;
+        }
+        .alert {
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header data-aos="fade-down" data-aos-duration="800">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="home.html">LUXURY CAR & MOTO</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+<div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="home.html">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="vehicles.html">Xe đang bán</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Dịch vụ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">Về chúng tôi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
+                        <li class="nav-item" id="loginNav">
+                            <a class="nav-link" href="index.html">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item d-none" id="userNav">
+                            <span class="nav-link">Chào, <span id="userName"></span>!</span>
+                            <a class="nav-link" href="#" id="logoutLink">Đăng xuất</a>
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">Giỏ hàng</a>
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#orderHistoryModal">Lịch sử đơn hàng</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true" data-aos="zoom-in" data-aos-duration="500">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel"><i class="fas fa-shopping-cart me-2"></i>Giỏ Hàng & Đặt Hàng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Giỏ Hàng</h6>
+                    <div id="cartItems"></div>
+                    <p><strong>Tổng cộng:</strong> <span id="cartTotal">0 VNĐ</span></p>
+                    <button class="btn btn-clear-cart" id="clearCartButton">Xóa Giỏ Hàng</button>
+                    <div id="cartMessage"></div>
+                    <hr>
+                    <h6>Thông Tin Khách Hàng</h6>
+                    <form id="orderForm">
+                        <div class="mb-3">
+                            <label for="orderName" class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control" id="orderName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="orderEmail" class="form-label">Email</label>
+<input type="email" class="form-control" id="orderEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="orderPhone" class="form-label">Số điện thoại</label>
+                            <input type="tel" class="form-control" id="orderPhone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="orderAddress" class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" id="orderAddress" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Đặt Hàng</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order History Modal -->
+    <div class="modal fade" id="orderHistoryModal" tabindex="-1" aria-labelledby="orderHistoryModalLabel" aria-hidden="true" data-aos="zoom-in" data-aos-duration="500">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderHistoryModalLabel">Lịch Sử Đơn Hàng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="orderHistory"></div>
+                    <div id="orderMessage"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <section class="vehicle-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up" data-aos-duration="800">Xe Đang Bán</h2>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="filter-card" data-aos="fade-right" data-aos-duration="800">
+                            <h4>Bộ lọc</h4>
+                            <form id="filter-form">
+                                <div class="mb-3">
+                                    <label class="form-label">Loại xe</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="sedan">
+                                        <label class="form-check-label" for="sedan">Sedan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="suv">
+                                        <label class="form-check-label" for="suv">SUV</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="coupe">
+<label class="form-check-label" for="coupe">Coupe</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="convertible">
+                                        <label class="form-check-label" for="convertible">Convertible</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Giá</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="under1">
+                                        <label class="form-check-label" for="under1">Dưới 1 tỷ</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="1to3">
+                                        <label class="form-check-label" for="1to3">1-3 tỷ</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="3to5">
+                                        <label class="form-check-label" for="3to5">3-5 tỷ</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="over5">
+                                        <label class="form-check-label" for="over5">Trên 5 tỷ</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Hãng xe</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input brand-checkbox" type="checkbox" id="ferrari" data-brand="ferrari">
+                                        <label class="form-check-label" for="ferrari">Ferrari</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input brand-checkbox" type="checkbox" id="lamborghini" data-brand="lamborghini">
+                                        <label class="form-check-label" for="lamborghini">Lamborghini</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input brand-checkbox" type="checkbox" id="porsche" data-brand="porsche">
+<label class="form-check-label" for="porsche">Porsche</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input brand-checkbox" type="checkbox" id="bentley" data-brand="bentley">
+                                        <label class="form-check-label" for="bentley">Bentley</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input brand-checkbox" type="checkbox" id="ducati" data-brand="ducati">
+                                        <label class="form-check-label" for="ducati">Ducati</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input brand-checkbox" type="checkbox" id="bmw" data-brand="bmw">
+                                        <label class="form-check-label" for="bmw">BMW</label>
+                                    </div>
+                                    <span class="brand-filter" data-brand="all">Tất cả</span>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Áp dụng</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="row" id="vehicle-list">
+                            <div class="col-md-4 vehicle-item" data-brand="ferrari" data-price="2500000000" data-aos="fade-up" data-aos-duration="800">
+                                <div class="vehicle-card">
+                                    <img src="assets/1.jpg" alt="Ferrari SF90 Stradale" class="vehicle-img">
+                                    <div class="vehicle-body">
+                                        <h5 class="vehicle-title">Ferrari SF90 Stradale</h5>
+                                        <p class="vehicle-price">2.5 tỷ VND</p>
+                                        <ul class="vehicle-features">
+                                            <li class="feature-item"><i class="fas fa-bolt feature-icon"></i> 1000 mã lực</li>
+                                            <li class="feature-item"><i class="fas fa-gas-pump feature-icon"></i> Xăng</li>
+                                            <li class="feature-item"><i class="fas fa-globe feature-icon"></i> Nhập khẩu</li>
+                                        </ul>
+                                        <button class="btn btn-primary" onclick="showDetails('ferrari')">Chi tiết</button>
+                                        <button class="btn btn-cart add-to-cart" data-vehicle="ferrari">Thêm vào giỏ</button>
+                                    </div>
+                                </div>
+</div>
+                            <div class="col-md-4 vehicle-item" data-brand="lamborghini" data-price="12800000000" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                                <div class="vehicle-card">
+                                    <img src="assets/2.jpg" alt="Lamborghini Aventador" class="vehicle-img">
+                                    <div class="vehicle-body">
+                                        <h5 class="vehicle-title">Lamborghini Aventador</h5>
+                                        <p class="vehicle-price">12.8 tỷ VND</p>
+                                        <ul class="vehicle-features">
+                                            <li class="feature-item"><i class="fas fa-bolt feature-icon"></i> 770 mã lực</li>
+                                            <li class="feature-item"><i class="fas fa-gas-pump feature-icon"></i> Xăng</li>
+                                            <li class="feature-item"><i class="fas fa-globe feature-icon"></i> Nhập khẩu</li>
+                                        </ul>
+                                        <button class="btn btn-primary" onclick="showDetails('lamborghini')">Chi tiết</button>
+                                        <button class="btn btn-cart add-to-cart" data-vehicle="lamborghini">Thêm vào giỏ</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 vehicle-item" data-brand="porsche" data-price="6500000000" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                                <div class="vehicle-card">
+                                    <img src="assets/3.jpg" alt="Porsche 911 Turbo S" class="vehicle-img">
+                                    <div class="vehicle-body">
+                                        <h5 class="vehicle-title">Porsche 911 Turbo S</h5>
+                                        <p class="vehicle-price">6.5 tỷ VND</p>
+                                        <ul class="vehicle-features">
+                                            <li class="feature-item"><i class="fas fa-bolt feature-icon"></i> 650 mã lực</li>
+                                            <li class="feature-item"><i class="fas fa-gas-pump feature-icon"></i> Xăng</li>
+                                            <li class="feature-item"><i class="fas fa-globe feature-icon"></i> Nhập khẩu</li>
+                                        </ul>
+                                        <button class="btn btn-primary" onclick="showDetails('porsche')">Chi tiết</button>
+                                        <button class="btn btn-cart add-to-cart" data-vehicle="porsche">Thêm vào giỏ</button>
+                                    </div>
+                                </div>
+                            </div>
+<div class="col-md-4 vehicle-item" data-brand="bentley" data-price="8900000000" data-aos="fade-up" data-aos-duration="800">
+                                <div class="vehicle-card">
+                                    <img src="assets/4.jpg" alt="Bentley Continental GT" class="vehicle-img">
+                                    <div class="vehicle-body">
+                                        <h5 class="vehicle-title">Bentley Continental GT</h5>
+                                        <p class="vehicle-price">8.9 tỷ VND</p>
+                                        <ul class="vehicle-features">
+                                            <li class="feature-item"><i class="fas fa-bolt feature-icon"></i> 626 mã lực</li>
+                                            <li class="feature-item"><i class="fas fa-gas-pump feature-icon"></i> Xăng</li>
+                                            <li class="feature-item"><i class="fas fa-globe feature-icon"></i> Nhập khẩu</li>
+                                        </ul>
+                                        <button class="btn btn-primary" onclick="showDetails('bentley')">Chi tiết</button>
+                                        <button class="btn btn-cart add-to-cart" data-vehicle="bentley">Thêm vào giỏ</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 vehicle-item" data-brand="ducati" data-price="1200000000" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                                <div class="vehicle-card">
+                                    <img src="assets/5.jpg" alt="Ducati Panigale V4" class="vehicle-img">
+                                    <div class="vehicle-body">
+                                        <h5 class="vehicle-title">Ducati Panigale V4</h5>
+                                        <p class="vehicle-price">1.2 tỷ VND</p>
+                                        <ul class="vehicle-features">
+                                            <li class="feature-item"><i class="fas fa-bolt feature-icon"></i> 214 mã lực</li>
+                                            <li class="feature-item"><i class="fas fa-gas-pump feature-icon"></i> Xăng</li>
+                                            <li class="feature-item"><i class="fas fa-globe feature-icon"></i> Nhập khẩu</li>
+                                        </ul>
+                                        <button class="btn btn-primary" onclick="showDetails('ducati')">Chi tiết</button>
+                                        <button class="btn btn-cart add-to-cart" data-vehicle="ducati">Thêm vào giỏ</button>
+                                    </div>
+                                </div>
+                            </div>
+<div class="col-md-4 vehicle-item" data-brand="bmw" data-price="5800000000" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                                <div class="vehicle-card">
+                                    <img src="assets/6.jpg" alt="BMW M8 Competition" class="vehicle-img">
+                                    <div class="vehicle-body">
+                                        <h5 class="vehicle-title">BMW M8 Competition</h5>
+                                        <p class="vehicle-price">5.8 tỷ VND</p>
+                                        <ul class="vehicle-features">
+                                            <li class="feature-item"><i class="fas fa-bolt feature-icon"></i> 625 mã lực</li>
+                                            <li class="feature-item"><i class="fas fa-gas-pump feature-icon"></i> Xăng</li>
+                                            <li class="feature-item"><i class="fas fa-globe feature-icon"></i> Nhập khẩu</li>
+                                        </ul>
+                                        <button class="btn btn-primary" onclick="showDetails('bmw')">Chi tiết</button>
+                                        <button class="btn btn-cart add-to-cart" data-vehicle="bmw">Thêm vào giỏ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <nav aria-label="Page navigation" data-aos="fade-up" data-aos-duration="800">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item"><a class="page-link" href="vehicles.html">Trước</a></li>
+                                <li class="page-item"><a class="page-link" href="vehicles.html">1</a></li>
+                                <li class="page-item"><a class="page-link" href="vehicles2.html">2</a></li>
+                                <li class="page-item"><a class="page-link" href="vehicles3.html">3</a></li>
+                                <li class="page-item"><a class="page-link" href="vehicles2.html">Tiếp</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Vehicle Details Modal -->
+    <div class="modal fade" id="vehicleModal" tabindex="-1" aria-labelledby="vehicleModalLabel" aria-hidden="true" data-aos="zoom-in" data-aos-duration="500">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalVehicleTitle">Chi Tiết Xe</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p><strong>Giá:</strong> <span id="modalVehiclePrice"></span></p>
+                    <p><strong>Mã lực:</strong> <span id="modalVehicleHorsepower"></span></p>
+                    <p><strong>Nhiên liệu:</strong> <span id="modalVehicleFuel"></span></p>
+                    <p><strong>Xuất xứ:</strong> <span id="modalVehicleOrigin"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer data-aos="fade-up" data-aos-duration="800">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h4>Luxury Car & Moto</h4>
+                    <p>Đại lý phân phối chính thức các dòng xe cao cấp, siêu xe hàng đầu thế giới tại Việt Nam.</p>
+                    <div class="social-icons">
+                        <a href="#" data-aos="zoom-in" data-aos-duration="500"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="100"><i class="fab fa-twitter"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="200"><i class="fab fa-instagram"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="300"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h4>Liên Kết</h4>
+                    <ul class="footer-links">
+                        <li><a href="home.html" data-aos="fade-right" data-aos-duration="500">Trang chủ</a></li>
+                        <li><a href="vehicles.html" data-aos="fade-right" data-aos-duration="500" data-aos-delay="100">Xe đang bán</a></li>
+                        <li><a href="services.html" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200">Dịch vụ</a></li>
+                        <li><a href="about.html" data-aos="fade-right" data-aos-duration="500" data-aos-delay="300">Về chúng tôi</a></li>
+                        <li><a href="contact.html" data-aos="fade-right" data-aos-duration="500" data-aos-delay="400">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Hỗ trợ</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-aos="fade-right" data-aos-duration="500">FAQ</a></li>
+                        <li><a href="#" data-aos="fade-right" data-aos-duration="500" data-aos-delay="100">Chính sách bảo hành</a></li>
+                        <li><a href="#" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200">Hướng dẫn mua xe</a></li>
+<li><a href="#" data-aos="fade-right" data-aos-duration="500" data-aos-delay="300">Liên hệ hỗ trợ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Liên Hệ</h4>
+                    <ul class="footer-links">
+                        <li data-aos="fade-right" data-aos-duration="500">60, Quận 2, TP.HCM</li>
+                        <li data-aos="fade-right" data-aos-duration="500" data-aos-delay="100">077******5</li>
+                        <li data-aos="fade-right" data-aos-duration="500" data-aos-delay="200">contact@luxurycar.vn</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center" data-aos="fade-up" data-aos-duration="800">© 2025 Luxury Car & Moto. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" id="backToTop" data-aos="fade-up" data-aos-duration="800">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="chatbot-toggle" id="chatbotToggle" data-aos="zoom-in" data-aos-duration="800">
+        <i class="fas fa-comment"></i>
+    </div>
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header" data-aos="slide-up" data-aos-duration="800">
+            <h5>Hỗ trợ Trực Tuyến</h5>
+            <button id="closeChatbot" class="btn-close btn-close-white"></button>
+        </div>
+        <div class="chatbot-body" id="chatbotMessages" data-aos="fade-in" data-aos-duration="800">
+            <div class="message bot-message">
+                Chào bạn! Tôi là trợ lý ảo của Luxury Car & Moto. Bạn cần hỗ trợ gì hôm nay?
+            </div>
+        </div>
+        <div class="chatbot-footer" data-aos="slide-down" data-aos-duration="800">
+            <form id="chatbotForm">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="chatbotInput" placeholder="Nhập tin nhắn...">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+
+        const vehicles = {
+            'ferrari': { name: 'Ferrari SF90 Stradale', price: 2500000000, horsepower: '1000 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' },
+            'lamborghini': { name: 'Lamborghini Aventador', price: 12800000000, horsepower: '770 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' },
+            'porsche': { name: 'Porsche 911 Turbo S', price: 6500000000, horsepower: '650 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' },
+'bentley': { name: 'Bentley Continental GT', price: 8900000000, horsepower: '626 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' },
+            'ducati': { name: 'Ducati Panigale V4', price: 1200000000, horsepower: '214 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' },
+            'bmw': { name: 'BMW M8 Competition', price: 5800000000, horsepower: '625 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' },
+            'porsche-taycan': { name: 'Porsche Taycan', price: 4600000000, horsepower: '408 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' },
+            'ferrari-california': { name: 'Ferrari California T', price: 4700000000, horsepower: '770 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' },
+            'mercedes-s450': { name: 'Mercedes S 450', price: 5000000000, horsepower: '650 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' },
+            'bmw-430i': { name: 'BMW 430i 2023', price: 2799000000, horsepower: '302 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' },
+            'kawasaki-h2r': { name: 'Kawasaki Ninja H2R', price: 1270000000, horsepower: '326 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' },
+            'moto-f4': { name: 'MOTO F4 LH44', price: 1380000000, horsepower: '212 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu' }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let user = JSON.parse(localStorage.getItem('user'));
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+            const updateNavbar = () => {
+                const loginNav = document.getElementById('loginNav');
+                const userNav = document.getElementById('userNav');
+                if (user) {
+                    loginNav.classList.add('d-none');
+                    userNav.classList.remove('d-none');
+                    document.getElementById('userName').textContent = user.username;
+                } else {
+                    loginNav.classList.remove('d-none');
+                    userNav.classList.add('d-none');
+                }
+            };
+            updateNavbar();
+
+            const prefillOrderForm = () => {
+                if (user) {
+                    document.getElementById('orderName').value = user.username || '';
+                    document.getElementById('orderEmail').value = user.email || '';
+                }
+            };
+
+            document.getElementById('cartModal').addEventListener('show.bs.modal', prefillOrderForm);
+
+            document.getElementById('logoutLink').addEventListener('click', () => {
+                localStorage.removeItem('user');
+                user = null;
+                cart = cart.filter(item => item.user !== user?.username);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateNavbar();
+                updateCart();
+                alert('Đăng xuất thành công!');
+            });
+const filterForm = document.getElementById('filter-form');
+            const brandCheckboxes = document.querySelectorAll('.brand-checkbox');
+            const allBrandFilter = document.querySelector('.brand-filter[data-brand="all"]');
+            const vehicleItems = document.querySelectorAll('.vehicle-item');
+
+            allBrandFilter.addEventListener('click', () => {
+                brandCheckboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                applyFilters();
+            });
+
+            filterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                applyFilters();
+            });
+
+            function applyFilters() {
+                const selectedBrands = Array.from(brandCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.dataset.brand);
+                const selectedPrices = Array.from(document.querySelectorAll('.form-check-input[id^="under"], .form-check-input[id^="1to3"], .form-check-input[id^="3to5"], .form-check-input[id^="over5"]'))
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.id);
+
+                vehicleItems.forEach(item => {
+                    const brand = item.dataset.brand;
+                    const price = parseFloat(item.dataset.price);
+                    let priceMatch = selectedPrices.length === 0 ||
+                        (selectedPrices.includes('under1') && price < 1000000000) ||
+                        (selectedPrices.includes('1to3') && price >= 1000000000 && price <= 3000000000) ||
+                        (selectedPrices.includes('3to5') && price > 3000000000 && price <= 5000000000) ||
+                        (selectedPrices.includes('over5') && price > 5000000000);
+
+                    if ((selectedBrands.length === 0 || selectedBrands.includes(brand)) && priceMatch) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', () => {
+                    if (!user) {
+                        window.location.href = 'index.html';
+                        return;
+                    }
+                    const vehicleId = button.getAttribute('data-vehicle');
+                    const vehicle = vehicles[vehicleId];
+                    const existingItem = cart.find(item => item.id === vehicleId && item.user === user.username);
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({ ...vehicle, id: vehicleId, quantity: 1, user: user.username });
+                    }
+localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCart();
+                    alert(`${vehicle.name} đã được thêm vào giỏ hàng!`);
+                });
+            });
+
+            const updateCart = () => {
+                const cartItems = document.getElementById('cartItems');
+                const cartTotal = document.getElementById('cartTotal');
+                const cartMessage = document.getElementById('cartMessage');
+                const userCart = cart.filter(item => item.user === user?.username);
+                if (userCart.length === 0) {
+                    cartItems.innerHTML = '<p>Giỏ hàng trống</p>';
+                    cartTotal.textContent = '0 VNĐ';
+                    cartMessage.innerHTML = '';
+                } else {
+                    cartItems.innerHTML = userCart.map(item => `
+                        <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                            <span>${item.name} (x${item.quantity})</span>
+                            <div>
+                                <span>${(item.price * item.quantity).toLocaleString('vi-VN')} VNĐ</span>
+                                <button class="btn btn-delete-cart ms-2" onclick="deleteCartItem('${item.id}')"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `).join('');
+                    const total = userCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                    cartTotal.textContent = total.toLocaleString('vi-VN') + ' VNĐ';
+                    cartMessage.innerHTML = '';
+                }
+            };
+            updateCart();
+
+            window.deleteCartItem = function (vehicleId) {
+                if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+                    cart = cart.filter(item => !(item.id === vehicleId && item.user === user?.username));
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCart();
+                    document.getElementById('cartMessage').innerHTML = '<div class="alert alert-success">Sản phẩm đã được xóa khỏi giỏ hàng!</div>';
+                }
+            };
+
+            document.getElementById('clearCartButton').addEventListener('click', () => {
+                if (confirm('Bạn có chắc chắn muốn xóa toàn bộ giỏ hàng?')) {
+                    cart = cart.filter(item => item.user !== user?.username);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCart();
+                    document.getElementById('cartMessage').innerHTML = '<div class="alert alert-success">Giỏ hàng đã được xóa!</div>';
+                }
+            });
+
+            const updateOrderHistory = () => {
+                const orderHistory = document.getElementById('orderHistory');
+const orderMessage = document.getElementById('orderMessage');
+                let displayOrders = user?.username === 'mk' ? orders : orders.filter(order => order.username === user?.username);
+                if (displayOrders.length === 0) {
+                    orderHistory.innerHTML = '<p>Chưa có đơn hàng nào</p>';
+                    orderMessage.innerHTML = '';
+                } else {
+                    orderHistory.innerHTML = displayOrders.map(order => `
+                        <div class="border p-3 mb-2 rounded">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="mb-0"><strong>Mã đơn hàng:</strong> ${order.id}</p>
+                                <button class="btn btn-delete-order" onclick="deleteOrder(${order.id})">Xóa Đơn Hàng</button>
+                            </div>
+                            <p><strong>Khách hàng:</strong> ${order.customer.name}</p>
+                            <p><strong>Email:</strong> ${order.customer.email}</p>
+                            <p><strong>Số điện thoại:</strong> ${order.customer.phone}</p>
+                            <p><strong>Địa chỉ:</strong> ${order.customer.address}</p>
+                            <p><strong>Tổng tiền:</strong> ${order.total.toLocaleString('vi-VN')} VNĐ</p>
+                            <p><strong>Ngày đặt:</strong> ${order.date}</p>
+                            <p><strong>Sản phẩm:</strong></p>
+                            <ul>
+                                ${order.items.map((item, index) => `
+                                    <li class="order-item">
+                                        <span>${item.name} (x${item.quantity}) - ${(item.price * item.quantity).toLocaleString('vi-VN')} VNĐ</span>
+                                        <button class="btn btn-delete-item btn-sm" onclick="deleteOrderItem(${order.id}, ${index})">Xóa</button>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `).join('');
+                    orderMessage.innerHTML = '';
+                }
+            };
+            updateOrderHistory();
+
+            window.deleteOrder = function (orderId) {
+                if (confirm('Bạn có chắc chắn muốn xóa toàn bộ đơn hàng này?')) {
+                    orders = orders.filter(order => order.id !== orderId);
+                    localStorage.setItem('orders', JSON.stringify(orders));
+                    updateOrderHistory();
+                    document.getElementById('orderMessage').innerHTML = '<div class="alert alert-success">Đơn hàng đã được xóa!</div>';
+                }
+            };
+
+            window.deleteOrderItem = function (orderId, itemIndex) {
+                if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi đơn hàng?')) {
+const order = orders.find(order => order.id === orderId);
+                    if (order) {
+                        order.items.splice(itemIndex, 1);
+                        if (order.items.length === 0) {
+                            orders = orders.filter(o => o.id !== orderId);
+                        } else {
+                            order.total = order.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                        }
+                        localStorage.setItem('orders', JSON.stringify(orders));
+                        updateOrderHistory();
+                        document.getElementById('orderMessage').innerHTML = '<div class="alert alert-success">Sản phẩm đã được xóa khỏi đơn hàng!</div>';
+                    }
+                }
+            };
+
+            document.getElementById('orderForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (!user) {
+                    window.location.href = 'index.html';
+                    return;
+                }
+                const name = document.getElementById('orderName').value.trim();
+                const email = document.getElementById('orderEmail').value.trim();
+                const phone = document.getElementById('orderPhone').value.trim();
+                const address = document.getElementById('orderAddress').value.trim();
+                const userCart = cart.filter(item => item.user === user.username);
+                const cartMessage = document.getElementById('cartMessage');
+
+                if (!name || !email || !phone || !address) {
+                    cartMessage.innerHTML = '<div class="alert alert-danger">Vui lòng điền đầy đủ thông tin!</div>';
+                    return;
+                }
+                if (!email.includes('@')) {
+                    cartMessage.innerHTML = '<div class="alert alert-danger">Email phải chứa ký tự @!</div>';
+                    return;
+                }
+                if (userCart.length === 0) {
+                    cartMessage.innerHTML = '<div class="alert alert-danger">Giỏ hàng trống, vui lòng thêm sản phẩm trước khi đặt hàng!</div>';
+                    return;
+                }
+
+                const order = {
+                    id: Date.now(),
+                    username: user.username,
+                    customer: { name, email, phone, address },
+                    items: userCart,
+                    total: userCart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+                    date: new Date().toLocaleString('vi-VN')
+                };
+                orders.push(order);
+                localStorage.setItem('orders', JSON.stringify(orders));
+                cart = cart.filter(item => item.user !== user.username);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCart();
+                updateOrderHistory();
+document.getElementById('orderForm').reset();
+                bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+                cartMessage.innerHTML = '<div class="alert alert-success">Đặt hàng thành công! Đang mở lịch sử đơn hàng...</div>';
+                setTimeout(() => {
+                    new bootstrap.Modal(document.getElementById('orderHistoryModal')).show();
+                    cartMessage.innerHTML = '';
+                }, 1000);
+            });
+
+            window.showDetails = function (vehicleId) {
+                const vehicle = vehicles[vehicleId] || { name: 'N/A', price: 'N/A', horsepower: 'N/A', fuel: 'N/A', origin: 'N/A' };
+                document.getElementById('modalVehiclePrice').textContent = vehicle.price.toLocaleString('vi-VN') + ' VNĐ';
+                document.getElementById('modalVehicleHorsepower').textContent = vehicle.horsepower;
+                document.getElementById('modalVehicleFuel').textContent = vehicle.fuel;
+                document.getElementById('modalVehicleOrigin').textContent = vehicle.origin;
+                document.getElementById('modalVehicleTitle').textContent = `Chi Tiết Xe - ${vehicle.name}`;
+                new bootstrap.Modal(document.getElementById('vehicleModal')).show();
+            };
+
+            document.getElementById('backToTop').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            document.getElementById('chatbotToggle').addEventListener('click', () => {
+                document.getElementById('chatbotContainer').classList.toggle('active');
+            });
+            document.getElementById('closeChatbot').addEventListener('click', () => {
+                document.getElementById('chatbotContainer').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

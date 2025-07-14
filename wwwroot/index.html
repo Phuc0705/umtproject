@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Car & Moto - Đăng nhập</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&...lay=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: url(24.png) no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+
+        header {
+            width: 100%;
+            background: #1a1a1a;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            color: #ffd700;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: #ccc !important;
+            font-size: 1em;
+            margin-left: 15px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #ffd700 !important;
+        }
+
+        .wrapper {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .admin-dashboard {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 80px;
+            color: #fff;
+        }
+
+        h1, h2 {
+            color: #ffd700;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .input-box {
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .input-box input, .input-box select {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: #fff;
+            font-size: 1em;
+            transition: border 0.3s;
+}
+        .input-box input:focus, .input-box select:focus {
+            outline: none;
+            border: 1px solid #ffd700;
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffd700;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .remember-forgot a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #ffd700;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background: #e6c200;
+            transform: scale(1.05);
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 0.9em;
+        }
+
+        .btn-add, .btn-edit, .btn-delete {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-add {
+            background: #28a745;
+            color: #fff;
+        }
+
+        .btn-add:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
+
+        .btn-edit {
+            background: #007bff;
+            color: #fff;
+        }
+
+        .btn-edit:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+            transform: scale(1.05);
+        }
+
+        .register-link {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .register-link a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        #authMessage {
+            margin-top: 15px;
+        }
+
+        .alert {
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .table {
+            background: #333;
+            color: #fff;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ffd700;
+            vertical-align: middle;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+<a class="navbar-brand" href="/home.html">LUXURY CAR & MOTO</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="/home.html">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/vehicles.html">Xe đang bán</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/services.html">Dịch vụ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about.html">Về chúng tôi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contact.html">Liên hệ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/cart.html">Giỏ Hàng</a></li>
+                        <li class="nav-item" id="loginNav">
+                            <a class="nav-link" href="/index.html">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item d-none" id="userNav">
+                            <span class="nav-link">Chào, <span id="userName"></span>!</span>
+                            <a class="nav-link" href="#" id="logoutLink">Đăng xuất</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="wrapper" id="authWrapper">
+        <!-- Login Form -->
+        <div id="loginForm">
+            <h1>Đăng nhập</h1>
+            <div class="input-box">
+                <input type="text" id="loginUsername" placeholder="Tên đăng nhập" required />
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="loginPassword" placeholder="Mật khẩu" required />
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox" id="rememberMe"> Ghi nhớ đăng nhập</label>
+                <a href="#">Quên mật khẩu?</a>
+            </div>
+            <button class="btn" onclick="handleLogin()">Đăng nhập</button>
+            <div class="register-link">
+                <p>Chưa có tài khoản? <a href="#" onclick="showRegisterForm()">Đăng ký ngay</a></p>
+            </div>
+        </div>
+
+        <!-- Register Form -->
+        <div id="registerForm" style="display: none;">
+            <h1>Đăng ký</h1>
+            <div class="input-box">
+                <input type="text" id="registerUsername" placeholder="Tên đăng nhập" required />
+                <i class='bx bxs-user'></i>
+            </div>
+<div class="input-box">
+                <input type="email" id="registerEmail" placeholder="Email" required />
+                <i class='bx bxs-envelope'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="registerPassword" placeholder="Mật khẩu" required />
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="confirmPassword" placeholder="Xác nhận mật khẩu" required />
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <button class="btn" onclick="handleRegister()">Đăng ký</button>
+            <div class="register-link">
+                <p>Đã có tài khoản? <a href="#" onclick="showLoginForm()">Đăng nhập</a></p>
+            </div>
+        </div>
+        <div id="authMessage" class="mt-3 text-center"></div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard d-none" id="adminDashboard">
+        <h1>Quản Lý Hệ Thống</h1>
+        <!-- Manage Vehicles -->
+        <h2>Quản Lý Xe</h2>
+        <div class="form-group">
+            <h3>Thêm Xe Mới</h3>
+            <div class="input-box">
+                <input type="text" id="vehicleName" placeholder="Tên xe (e.g., MOTO BMW HP4)" required />
+                <i class='bx bxs-car'></i>
+            </div>
+            <div class="input-box">
+                <input type="number" id="vehiclePrice" placeholder="Giá (VNĐ)" required />
+                <i class='bx bxs-dollar-circle'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" id="vehicleHorsepower" placeholder="Mã lực (e.g., 215 mã lực)" required />
+                <i class='bx bxs-bolt'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" id="vehicleFuel" placeholder="Nhiên liệu (e.g., Xăng)" required />
+                <i class='bx bxs-gas-pump'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" id="vehicleOrigin" placeholder="Xuất xứ (e.g., Nhập khẩu)" required />
+                <i class='bx bxs-globe'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" id="vehicleImage" placeholder="URL hình ảnh (e.g., assets/13.jpg)" required />
+                <i class='bx bxs-image'></i>
+            </div>
+            <div class="input-box">
+                <select id="vehicleBrand" required>
+                    <option value="" disabled selected>Chọn hãng xe</option>
+                    <option value="bmw">BMW</option>
+                    <option value="arch">Arch</option>
+                    <option value="mv-agusta">MV Agusta</option>
+                    <option value="aprilia">Aprilia</option>
+                    <option value="ducati">Ducati</option>
+                    <option value="mtt">MTT</option>
+                </select>
+<i class='bx bxs-car'></i>
+            </div>
+            <button class="btn btn-add" onclick="addVehicle()">Thêm Xe</button>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên Xe</th>
+                    <th>Giá</th>
+                    <th>Mã lực</th>
+                    <th>Nhiên liệu</th>
+                    <th>Xuất xứ</th>
+                    <th>Hình ảnh</th>
+                    <th>Hãng</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody id="vehicleTable"></tbody>
+        </table>
+
+        <!-- Manage Users -->
+        <h2>Quản Lý Người Dùng</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Tên Đăng Nhập</th>
+                    <th>Email</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody id="userTable"></tbody>
+        </table>
+
+        <!-- Manage Orders -->
+        <h2>Quản Lý Đơn Hàng</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Mã Đơn Hàng</th>
+                    <th>Khách Hàng</th>
+                    <th>Tổng Tiền</th>
+                    <th>Ngày Đặt</th>
+                    <th>Sản Phẩm</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody id="orderTable"></tbody>
+        </table>
+
+        <!-- Cart History -->
+        <h2>Lịch Sử Giỏ Hàng</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Người Dùng</th>
+                    <th>Mặt Hàng</th>
+                    <th>Số Lượng</th>
+                    <th>Giá</th>
+                    <th>Thời Gian</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody id="cartHistoryTable"></tbody>
+        </table>
+
+        <!-- Test Drive Registrations -->
+        <h2>Đăng Ký Lái Thử</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Họ Tên</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Email</th>
+                    <th>Dòng Xe</th>
+                    <th>Ngày Hẹn</th>
+                    <th>Thời Gian</th>
+                </tr>
+            </thead>
+            <tbody id="testDriveTable"></tbody>
+        </table>
+
+        <!-- Contact Submissions -->
+        <h2>Liên Hệ</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Họ Tên</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Email</th>
+                    <th>Nội Dung</th>
+                    <th>Thời Gian</th>
+                </tr>
+            </thead>
+            <tbody id="contactTable"></tbody>
+</table>
+
+        <!-- Export Button -->
+        <button class="btn mt-3" onclick="exportToGoogleSheet()">Xuất Dữ Liệu Ra Google Sheets</button>
+        <button class="btn mt-3" onclick="showLoginForm()">Quay Lại Đăng Nhập</button>
+
+        <div id="authMessage" class="mt-3 text-center"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+
+        // Load data from localStorage
+        let users = JSON.parse(localStorage.getItem('users')) || {};
+        let user = JSON.parse(localStorage.getItem('user'));
+        let vehicles = JSON.parse(localStorage.getItem('vehicles')) || {};
+
+        // Ensure admin user exists
+        if (!users['admin']) {
+            users['admin'] = { username: 'admin', email: 'admin@luxurycar.vn', password: '123@4' };
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        // Function to fetch motorcycle data from HTML files
+        async function fetchMotorcycleData() {
+            const urls = ['/vehicles.html', '/vehicles2.html', '/vehicles3.html'];
+            let fetchedVehicles = {};
+
+            for (const url of urls) {
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error(`Failed to fetch ${url}`);
+                    const htmlText = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(htmlText, 'text/html');
+
+                    // Option 1: Parse table with class 'motorcycle-table'
+                    const rows = doc.querySelectorAll('.motorcycle-table tr');
+                    rows.forEach(row => {
+                        const cells = row.querySelectorAll('td');
+                        if (cells.length >= 7) {
+                            const name = cells[0].textContent.trim();
+                            const id = `moto-${cells[6].textContent.trim().toLowerCase()}-${name.toLowerCase().replace(/\s+/g, '-')}`;
+                            fetchedVehicles[id] = {
+                                name: name,
+                                price: parseInt(cells[1].textContent.trim().replace(/[^0-9]/g, '')),
+                                horsepower: cells[2].textContent.trim(),
+                                fuel: cells[3].textContent.trim(),
+                                origin: cells[4].textContent.trim(),
+                                image: cells[5].textContent.trim(),
+                                brand: cells[6].textContent.trim().toLowerCase()
+                            };
+                        }
+                    });
+// Option 2: Parse JSON from script tag with id 'motorcycle-data'
+                    const scriptTag = doc.querySelector('#motorcycle-data');
+                    if (scriptTag) {
+                        const jsonData = JSON.parse(scriptTag.textContent);
+                        Object.keys(jsonData).forEach(key => {
+                            fetchedVehicles[key] = jsonData[key];
+                        });
+                    }
+                } catch (error) {
+                    console.error(`Error fetching or parsing ${url}:`, error);
+                    document.getElementById('authMessage').innerHTML =
+                        `<div class="alert alert-danger">Lỗi khi tải dữ liệu từ ${url}</div>`;
+                }
+            }
+
+            // Merge fetched data with localStorage (localStorage takes precedence for modified vehicles)
+            vehicles = { ...fetchedVehicles, ...vehicles };
+            localStorage.setItem('vehicles', JSON.stringify(vehicles));
+            return vehicles;
+        }
+
+        // Load vehicles on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            await fetchMotorcycleData();
+            updateNavbar();
+            if (user && user.username === 'admin') {
+                showAdminDashboard();
+            }
+        });
+
+        // Update navbar based on login status
+        const updateNavbar = () => {
+            const loginNav = document.getElementById('loginNav');
+            const userNav = document.getElementById('userNav');
+            if (user) {
+                loginNav.classList.add('d-none');
+                userNav.classList.remove('d-none');
+                document.getElementById('userName').textContent = user.username;
+            } else {
+                loginNav.classList.remove('d-none');
+                userNav.classList.add('d-none');
+            }
+        };
+
+        // Show register form
+        function showRegisterForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('authMessage').innerHTML = '';
+            document.getElementById('authWrapper').classList.remove('d-none');
+            document.getElementById('adminDashboard').classList.add('d-none');
+        }
+
+        // Show login form
+        function showLoginForm() {
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('authMessage').innerHTML = '';
+            document.getElementById('authWrapper').classList.remove('d-none');
+            document.getElementById('adminDashboard').classList.add('d-none');
+        }
+
+        // Show admin dashboard
+        function showAdminDashboard() {
+            document.getElementById('authWrapper').classList.add('d-none');
+document.getElementById('adminDashboard').classList.remove('d-none');
+
+            // Load vehicles
+            const vehicleTable = document.getElementById('vehicleTable');
+            vehicleTable.innerHTML = '';
+            Object.entries(vehicles).forEach(([id, vehicle]) => {
+                const row = `<tr>
+                    <td>${id}</td>
+                    <td>${vehicle.name}</td>
+                    <td>${vehicle.price.toLocaleString('vi-VN')} VNĐ</td>
+                    <td>${vehicle.horsepower}</td>
+                    <td>${vehicle.fuel}</td>
+                    <td>${vehicle.origin}</td>
+                    <td><a href="${vehicle.image}" target="_blank">Xem hình</a></td>
+                    <td>${vehicle.brand}</td>
+                    <td>
+                        <button class="btn btn-edit btn-sm" onclick="editVehicle('${id}')">Sửa</button>
+                        <button class="btn btn-delete btn-sm" onclick="deleteVehicle('${id}')">Xóa</button>
+                    </td>
+                </tr>`;
+                vehicleTable.innerHTML += row;
+            });
+
+            // Load users
+            const userTable = document.getElementById('userTable');
+            userTable.innerHTML = '';
+            Object.entries(users).forEach(([username, userData]) => {
+                if (username !== 'admin') {
+                    const row = `<tr>
+                        <td>${username}</td>
+                        <td>${userData.email}</td>
+                        <td>
+                            <button class="btn btn-delete btn-sm" onclick="deleteUser('${username}')">Xóa</button>
+                        </td>
+                    </tr>`;
+                    userTable.innerHTML += row;
+                }
+            });
+
+            // Load orders
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            const orderTable = document.getElementById('orderTable');
+            orderTable.innerHTML = '';
+            orders.forEach((order, index) => {
+                const itemsList = order.items.map(item => `${item.name} (x${item.quantity})`).join(', ');
+                const row = `<tr>
+                    <td>${order.id}</td>
+                    <td>${order.customer.name}</td>
+                    <td>${order.total.toLocaleString('vi-VN')} VNĐ</td>
+                    <td>${order.date}</td>
+                    <td>${itemsList}</td>
+                    <td>
+                        <button class="btn btn-edit btn-sm" onclick="editOrder(${index})">Sửa</button>
+                        <button class="btn btn-delete btn-sm" onclick="deleteOrder(${index})">Xóa</button>
+                    </td>
+                </tr>`;
+                orderTable.innerHTML += row;
+            });
+
+            // Load cart history
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+const cartTable = document.getElementById('cartHistoryTable');
+            cartTable.innerHTML = '';
+            cart.forEach((entry, index) => {
+                const row = `<tr>
+                    <td>${entry.user || 'Khách'}</td>
+                    <td>${entry.name}</td>
+                    <td>${entry.quantity}</td>
+                    <td>${entry.price.toLocaleString('vi-VN')} VNĐ</td>
+                    <td>${new Date(entry.timestamp).toLocaleString()}</td>
+                    <td>
+                        <button class="btn btn-edit btn-sm" onclick="editCartEntry(${index})">Sửa</button>
+                        <button class="btn btn-delete btn-sm" onclick="deleteCartEntry(${index})">Xóa</button>
+                    </td>
+                </tr>`;
+                cartTable.innerHTML += row;
+            });
+
+            // Load test drive registrations
+            const testDrives = JSON.parse(localStorage.getItem('testDriveRegistrations') || '[]');
+            const testDriveTable = document.getElementById('testDriveTable');
+            testDriveTable.innerHTML = '';
+            testDrives.forEach(entry => {
+                const row = `<tr>
+                    <td>${entry.name}</td>
+                    <td>${entry.phone}</td>
+                    <td>${entry.email}</td>
+                    <td>${entry.vehicle}</td>
+                    <td>${entry.date}</td>
+                    <td>${new Date(entry.timestamp).toLocaleString()}</td>
+                </tr>`;
+                testDriveTable.innerHTML += row;
+            });
+
+            // Load contact submissions
+            const contacts = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+            const contactTable = document.getElementById('contactTable');
+            contactTable.innerHTML = '';
+            contacts.forEach(entry => {
+                const row = `<tr>
+                    <td>${entry.name}</td>
+                    <td>${entry.phone}</td>
+                    <td>${entry.email}</td>
+                    <td>${entry.message}</td>
+                    <td>${new Date(entry.timestamp).toLocaleString()}</td>
+                </tr>`;
+                contactTable.innerHTML += row;
+            });
+        }
+
+        // Add vehicle
+        function addVehicle() {
+            const name = document.getElementById('vehicleName').value.trim();
+            const price = parseFloat(document.getElementById('vehiclePrice').value);
+            const horsepower = document.getElementById('vehicleHorsepower').value.trim();
+            const fuel = document.getElementById('vehicleFuel').value.trim();
+            const origin = document.getElementById('vehicleOrigin').value.trim();
+            const image = document.getElementById('vehicleImage').value.trim();
+            const brand = document.getElementById('vehicleBrand').value;
+if (!name || !price || !horsepower || !fuel || !origin || !image || !brand) {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Vui lòng điền đầy đủ thông tin xe!</div>';
+                return;
+            }
+            if (isNaN(price) || price <= 0) {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Giá phải là số dương!</div>';
+                return;
+            }
+            const id = `moto-${brand}-${name.toLowerCase().replace(/\s+/g, '-')}`;
+            if (vehicles[id]) {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Xe đã tồn tại!</div>';
+                return;
+            }
+
+            vehicles[id] = { name, price, horsepower, fuel, origin, image, brand };
+            localStorage.setItem('vehicles', JSON.stringify(vehicles));
+            document.getElementById('vehicleName').value = '';
+            document.getElementById('vehiclePrice').value = '';
+            document.getElementById('vehicleHorsepower').value = '';
+            document.getElementById('vehicleFuel').value = '';
+            document.getElementById('vehicleOrigin').value = '';
+            document.getElementById('vehicleImage').value = '';
+            document.getElementById('vehicleBrand').value = '';
+            showAdminDashboard();
+            document.getElementById('authMessage').innerHTML =
+                '<div class="alert alert-success">Thêm xe thành công!</div>';
+        }
+
+        // Edit vehicle
+        function editVehicle(id) {
+            const vehicle = vehicles[id];
+            const newName = prompt('Nhập tên xe mới:', vehicle.name);
+            const newPrice = prompt('Nhập giá mới (VNĐ):', vehicle.price);
+            const newHorsepower = prompt('Nhập mã lực mới:', vehicle.horsepower);
+            const newFuel = prompt('Nhập nhiên liệu mới:', vehicle.fuel);
+            const newOrigin = prompt('Nhập xuất xứ mới:', vehicle.origin);
+            const newImage = prompt('Nhập URL hình ảnh mới:', vehicle.image);
+            const newBrand = prompt('Nhập hãng xe mới (bmw, arch, mv-agusta, aprilia, ducati, mtt):', vehicle.brand);
+
+            if (newName && newPrice && newHorsepower && newFuel && newOrigin && newImage && newBrand) {
+                if (isNaN(newPrice) || newPrice <= 0) {
+                    document.getElementById('authMessage').innerHTML =
+                        '<div class="alert alert-danger">Giá phải là số dương!</div>';
+                    return;
+                }
+                const newId = `moto-${newBrand}-${newName.toLowerCase().replace(/\s+/g, '-')}`;
+                if (newId !== id && vehicles[newId]) {
+                    document.getElementById('authMessage').innerHTML =
+'<div class="alert alert-danger">Xe với tên và hãng này đã tồn tại!</div>';
+                    return;
+                }
+                delete vehicles[id];
+                vehicles[newId] = {
+                    name: newName,
+                    price: parseFloat(newPrice),
+                    horsepower: newHorsepower,
+                    fuel: newFuel,
+                    origin: newOrigin,
+                    image: newImage,
+                    brand: newBrand
+                };
+                localStorage.setItem('vehicles', JSON.stringify(vehicles));
+                showAdminDashboard();
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-success">Cập nhật xe thành công!</div>';
+            } else {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Vui lòng nhập đầy đủ thông tin hợp lệ!</div>';
+            }
+        }
+
+        // Delete vehicle
+        function deleteVehicle(id) {
+            if (confirm('Bạn có chắc muốn xóa xe này?')) {
+                delete vehicles[id];
+                localStorage.setItem('vehicles', JSON.stringify(vehicles));
+                showAdminDashboard();
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-success">Xóa xe thành công!</div>';
+            }
+        }
+
+        // Delete user
+        function deleteUser(username) {
+            if (username === 'admin') {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Không thể xóa tài khoản admin!</div>';
+                return;
+            }
+            if (confirm(`Bạn có chắc muốn xóa người dùng ${username}?`)) {
+                delete users[username];
+                let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                cart = cart.filter(item => item.user !== username);
+                let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+                orders = orders.filter(order => order.username !== username);
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.setItem('cart', JSON.stringify(cart));
+                localStorage.setItem('orders', JSON.stringify(orders));
+                showAdminDashboard();
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-success">Xóa người dùng thành công!</div>';
+            }
+        }
+
+        // Edit order
+        function editOrder(index) {
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            const order = orders[index];
+            const newName = prompt('Nhập tên khách hàng mới:', order.customer.name);
+            const newEmail = prompt('Nhập email mới:', order.customer.email);
+const newPhone = prompt('Nhập số điện thoại mới:', order.customer.phone);
+            const newAddress = prompt('Nhập địa chỉ mới:', order.customer.address);
+            const newItems = prompt('Nhập danh sách sản phẩm (tên xe:số lượng, phân cách bằng dấu phẩy):', order.items.map(item => `${item.name}:${item.quantity}`).join(','));
+
+            if (newName && newEmail && newPhone && newAddress && newItems) {
+                if (!newEmail.includes('@')) {
+                    document.getElementById('authMessage').innerHTML =
+                        '<div class="alert alert-danger">Email phải chứa ký tự @!</div>';
+                    return;
+                }
+                const itemsArray = newItems.split(',').map(item => {
+                    const [name, quantity] = item.split(':');
+                    const vehicle = Object.values(vehicles).find(v => v.name === name.trim());
+                    if (!vehicle || isNaN(quantity) || quantity <= 0) return null;
+                    return { ...vehicle, quantity: parseInt(quantity), id: `moto-${vehicle.brand}-${name.toLowerCase().replace(/\s+/g, '-')}` };
+                }).filter(item => item);
+
+                if (itemsArray.length === 0) {
+                    document.getElementById('authMessage').innerHTML =
+                        '<div class="alert alert-danger">Danh sách sản phẩm không hợp lệ!</div>';
+                    return;
+                }
+
+                orders[index].customer = { name: newName, email: newEmail, phone: newPhone, address: newAddress };
+                orders[index].items = itemsArray;
+                orders[index].total = itemsArray.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                localStorage.setItem('orders', JSON.stringify(orders));
+                showAdminDashboard();
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-success">Cập nhật đơn hàng thành công!</div>';
+            } else {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Vui lòng nhập đầy đủ thông tin hợp lệ!</div>';
+            }
+        }
+
+        // Delete order
+        function deleteOrder(index) {
+            if (confirm('Bạn có chắc muốn xóa đơn hàng này?')) {
+                let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+                orders.splice(index, 1);
+                localStorage.setItem('orders', JSON.stringify(orders));
+                showAdminDashboard();
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-success">Xóa đơn hàng thành công!</div>';
+            }
+        }
+
+        // Edit cart entry
+        function editCartEntry(index) {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const entry = cart[index];
+const newName = prompt('Nhập tên xe mới:', entry.name);
+            const newQuantity = prompt('Nhập số lượng mới:', entry.quantity);
+            if (newName && newQuantity && !isNaN(newQuantity) && newQuantity > 0) {
+                const vehicle = Object.values(vehicles).find(v => v.name === newName);
+                if (!vehicle) {
+                    document.getElementById('authMessage').innerHTML =
+                        '<div class="alert alert-danger">Xe không tồn tại!</div>';
+                    return;
+                }
+                cart[index].name = vehicle.name;
+                cart[index].price = vehicle.price;
+                cart[index].quantity = parseInt(newQuantity);
+                cart[index].id = `moto-${vehicle.brand}-${newName.toLowerCase().replace(/\s+/g, '-')}`;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                showAdminDashboard();
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-success">Cập nhật giỏ hàng thành công!</div>';
+            } else {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Vui lòng nhập thông tin hợp lệ!</div>';
+            }
+        }
+
+        // Delete cart entry
+        function deleteCartEntry(index) {
+            if (confirm('Bạn có chắc muốn xóa mục này?')) {
+                const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                showAdminDashboard();
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-success">Xóa mục giỏ hàng thành công!</div>';
+            }
+        }
+
+        // Handle registration
+        function handleRegister() {
+            const username = document.getElementById('registerUsername').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const password = document.getElementById('registerPassword').value.trim();
+            const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+            // Validation
+            if (!username || !email || !password || !confirmPassword) {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Vui lòng điền đầy đủ thông tin!</div>';
+                return;
+            }
+
+            if (!email.includes('@')) {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Email phải chứa ký tự @!</div>';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('authMessage').innerHTML =
+'<div class="alert alert-danger">Mật khẩu xác nhận không khớp!</div>';
+                return;
+            }
+
+            if (users[username]) {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Tên đăng nhập đã tồn tại!</div>';
+                return;
+            }
+
+            // Save user to localStorage
+            users[username] = { username, email, password };
+            localStorage.setItem('users', JSON.stringify(users));
+            document.getElementById('authMessage').innerHTML =
+                '<div class="alert alert-success">Đăng ký thành công! Vui lòng đăng nhập.</div>';
+            setTimeout(() => showLoginForm(), 1500);
+        }
+
+        // Handle login
+        function handleLogin() {
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+
+            if (!username || !password) {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Vui lòng điền đầy đủ thông tin!</div>';
+                return;
+            }
+
+            if (username === 'admin' && password === '123@4') {
+                user = { username: 'admin', email: 'admin@luxurycar.vn' };
+                localStorage.setItem('user', JSON.stringify(user));
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-success">Đăng nhập admin thành công!</div>';
+                updateNavbar();
+                setTimeout(() => showAdminDashboard(), 1500);
+                return;
+            }
+
+            const storedUser = users[username];
+            if (!storedUser || storedUser.password !== password) {
+                document.getElementById('authMessage').innerHTML =
+                    '<div class="alert alert-danger">Tên đăng nhập hoặc mật khẩu không đúng!</div>';
+                return;
+            }
+
+            // Save user info to localStorage
+            user = { username: storedUser.username, email: storedUser.email };
+            localStorage.setItem('user', JSON.stringify(user));
+            document.getElementById('authMessage').innerHTML =
+                '<div class="alert alert-success">Đăng nhập thành công! Đang chuyển hướng...</div>';
+            updateNavbar();
+            setTimeout(() => {
+                window.location.href = '/vehicles.html';
+            }, 1500);
+        }
+
+        // Handle logout
+        document.getElementById('logoutLink').addEventListener('click', () => {
+            localStorage.removeItem('user');
+            user = null;
+            updateNavbar();
+            document.getElementById('authMessage').innerHTML =
+                '<div class="alert alert-success">Đăng xuất thành công!</div>';
+            showLoginForm();
+        });
+// Function to escape CSV fields
+    function escapeCSVField(field) {
+        if (!field) return '';
+        const str = String(field);
+        if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+            return `"${str.replace(/"/g, '""')}"`;
+        }
+        return str;
+    }
+
+    // Export data to Google Sheet
+    function exportToGoogleSheet() {
+        // Prepare data from localStorage
+        const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+        const testDrives = JSON.parse(localStorage.getItem('testDriveRegistrations') || '[]');
+        const contacts = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+        const usersData = Object.entries(users).map(([username, userData]) => ({ username, ...userData }));
+
+        // Convert data to CSV format with proper escaping
+        let csvContent = "data:text/csv;charset=utf-8,\uFEFF"; // Add BOM for UTF-8 support
+
+        // Orders
+        if (orders.length > 0) {
+            csvContent += "Orders\n";
+            csvContent += "Mã Đơn Hàng,Khách Hàng,Tổng Tiền,Ngày Đặt,Sản Phẩm\n";
+            orders.forEach(order => {
+                const itemsList = order.items.map(item => `${escapeCSVField(item.name)} (x${item.quantity})`).join('; ');
+                csvContent += `${escapeCSVField(order.id)},${escapeCSVField(order.customer.name)},${escapeCSVField(order.total.toLocaleString('vi-VN') + ' VNĐ')},${escapeCSVField(order.date)},${escapeCSVField(itemsList)}\n`;
+            });
+            csvContent += "\n";
+        }
+
+        // Test Drive Registrations
+        if (testDrives.length > 0) {
+            csvContent += "Test Drive Registrations\n";
+            csvContent += "Họ Tên,Số Điện Thoại,Email,Dòng Xe,Ngày Hẹn,Thời Gian\n";
+            testDrives.forEach(entry => {
+                csvContent += `${escapeCSVField(entry.name)},${escapeCSVField(entry.phone)},${escapeCSVField(entry.email)},${escapeCSVField(entry.vehicle)},${escapeCSVField(entry.date)},${escapeCSVField(new Date(entry.timestamp).toLocaleString())}\n`;
+            });
+            csvContent += "\n";
+        }
+
+        // Contact Submissions
+        if (contacts.length > 0) {
+            csvContent += "Contact Submissions\n";
+            csvContent += "Họ Tên,Số Điện Thoại,Email,Nội Dung,Thời Gian\n";
+            contacts.forEach(entry => {
+                csvContent += `${escapeCSVField(entry.name)},${escapeCSVField(entry.phone)},${escapeCSVField(entry.email)},${escapeCSVField(entry.message)},${escapeCSVField(new Date(entry.timestamp).toLocaleString())}\n`;
+            });
+            csvContent += "\n";
+        }
+
+        // Users
+        if (usersData.length > 0) {
+            csvContent += "Users\n";
+            csvContent += "Tên Đăng Nhập,Email\n";
+            usersData.forEach(user => {
+                if (user.username !== 'admin') {
+                    csvContent += `${escapeCSVField(user.username)},${escapeCSVField(user.email)}\n`;
+                }
+            });
+        }
+
+        // Create and download CSV file
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `luxury_car_data_${new Date().toLocaleDateString('vi-VN').replace(/\//g, '-')}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        document.getElementById('authMessage').innerHTML =
+            '<div class="alert alert-success">Dữ liệu đã được xuất dưới dạng file CSV thành công!</div>';
+    }
+    </script>
+</body>
+</html>

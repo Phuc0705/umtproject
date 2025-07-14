@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Car & Moto - Đăng Ký Lái Thử & Liên Hệ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&au...50&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .navbar-brand {
+            color: #ffd700;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .nav-link {
+            color: #fff !important;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffd700 !important;
+        }
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #ffd700;
+        }
+        .form-section {
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #000;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .form-section:hover {
+            transform: translateY(-5px);
+        }
+        .form-label {
+            font-weight: 600;
+            color: #333;
+        }
+        .form-control, .form-select {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 12px;
+            margin-bottom: 20px;
+            background-color: #f8f8f8;
+            transition: border-color 0.3s ease;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        .btn-primary {
+            background-color: #ffd700;
+            border: none;
+            padding: 12px 25px;
+            color: #000;
+border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #e6c200;
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+        .social-icons a {
+            color: #fff;
+            margin-right: 15px;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #ffd700;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #ffd700;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+        .back-to-top:hover {
+            background-color: #e6c200;
+        }
+        @media (max-width: 768px) {
+            .form-section {
+                margin-bottom: 30px;
+            }
+        }
+        /* Chatbot Styles */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 80px;
+            background-color: #007bff;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .chatbot-toggle:hover {
+            background-color: #0056b3;
+            transform: rotate(360deg);
+        }
+        .chatbot-container {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 320px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            flex-direction: column;
+        }
+        .chatbot-container.active {
+            display: flex;
+        }
+        .chatbot-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+justify-content: space-between;
+            align-items: center;
+        }
+        .chatbot-header h5 {
+            margin: 0;
+            font-size: 16px;
+        }
+        .chatbot-body {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        .chatbot-footer {
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 0 0 10px 10px;
+        }
+        .chatbot-footer .form-control {
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .chatbot-footer .btn-primary {
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: #fff;
+        }
+        .chatbot-footer .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .bot-message {
+            background-color: #007bff;
+            color: #fff;
+            margin-right: 10px;
+            border-radius: 10px 10px 10px 0;
+        }
+        .user-message {
+            background-color: #ffd700;
+            color: #000;
+            margin-left: 10px;
+            text-align: right;
+            border-radius: 10px 10px 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">LUXURY CAR & MOTO</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="home.html">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="vehicles.html">Xe đang bán</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Dịch vụ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">Về chúng tôi</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="contact.html">Liên hệ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Đăng nhập</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Đăng Ký Lái Thử Section (Left) -->
+<div class="col-lg-6 mb-4">
+                    <h2 class="section-title">Đăng Ký Lái Thử</h2>
+                    <div class="form-section">
+                        <form id="testDriveForm">
+                            <div class="mb-3">
+                                <label for="testDriveName" class="form-label">Họ và tên</label>
+                                <input type="text" class="form-control" id="testDriveName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="testDrivePhone" class="form-label">Số điện thoại</label>
+                                <input type="tel" class="form-control" id="testDrivePhone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="testDriveEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="testDriveEmail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="testDriveVehicle" class="form-label">Dòng xe quan tâm</label>
+                                <select class="form-select" id="testDriveVehicle" required>
+                                    <option selected disabled>Chọn dòng xe</option>
+                                    <option>Ferrari SF90 Stradale</option>
+                                    <option>Lamborghini Aventador</option>
+                                    <option>Porsche 911 Turbo S</option>
+                                    <option>Bentley Continental GT</option>
+                                    <option>Ducati Panigale V4</option>
+                                    <option>BMW M8 Competition</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="testDriveDate" class="form-label">Ngày hẹn</label>
+                                <input type="date" class="form-control" id="testDriveDate" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Đăng Ký Ngay</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Liên Hệ Section (Right) -->
+                <div class="col-lg-6 mb-4">
+                    <h2 class="section-title">Liên Hệ</h2>
+                    <div class="form-section">
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label for="contactName" class="form-label">Họ và tên</label>
+                                <input type="text" class="form-control" id="contactName" required>
+                            </div>
+<div class="mb-3">
+                                <label for="contactPhone" class="form-label">Số điện thoại</label>
+                                <input type="tel" class="form-control" id="contactPhone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contactEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="contactEmail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contactMessage" class="form-label">Nội dung</label>
+                                <textarea class="form-control" id="contactMessage" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Gửi Tin Nhắn</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h4>Luxury Car & Moto</h4>
+                    <p>Đại lý phân phối chính thức các dòng xe cao cấp, siêu xe hàng đầu thế giới tại Việt Nam.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h4>Liên Kết</h4>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Trang chủ</a></li>
+                        <li><a href="vehicles.html">Xe đang bán</a></li>
+                        <li><a href="services.html">Dịch vụ</a></li>
+                        <li><a href="about.html">Về chúng tôi</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="index.html">Đăng nhập</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Hỗ trợ</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Chính sách bảo hành</a></li>
+                        <li><a href="#">Hướng dẫn mua xe</a></li>
+                        <li><a href="#">Liên hệ hỗ trợ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Liên Hệ</h4>
+                    <ul class="footer-links">
+                        <li>60, Quận 2, TP.HCM</li>
+                        <li>077******5</li>
+                        <li>contact@luxurycar.vn</li>
+</ul>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center">© 2025 Luxury Car & Moto. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-comment"></i>
+    </div>
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <h5>Hỗ Trợ Trực Tuyến</h5>
+            <button id="closeChatbot" class="btn-close btn-close-white"></button>
+        </div>
+        <div class="chatbot-body" id="chatbotMessages">
+            <div class="message bot-message">
+                Chào bạn! Tôi là trợ lý ảo của Luxury Car & Moto. Bạn cần hỗ trợ gì hôm nay? Hỏi tôi về xe, giỏ hàng, hoặc đơn hàng nhé!
+            </div>
+        </div>
+        <div class="chatbot-footer">
+            <form id="chatbotForm">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="chatbotInput" placeholder="Nhập tin nhắn...">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Vehicle data (same as in vehicles.html)
+        const vehicles = {
+            'moto-bmw-hp4': { name: 'MOTO BMW HP4', price: 1800000000, horsepower: '215 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu', brand: 'bmw' },
+            'moto-arch-method-143': { name: 'MOTO Arch Method 143', price: 1800000000, horsepower: '170 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu', brand: 'arch' },
+            'moto-mv-agusta-f4': { name: 'MOTO MV Agusta F4 Claudio', price: 1900000000, horsepower: '205 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu', brand: 'mv-agusta' },
+            'moto-aprilia-rsv4': { name: 'MOTO Aprilia RSV4 FW-GP', price: 1900000000, horsepower: '253 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu', brand: 'aprilia' },
+            'moto-ducati-panigale': { name: 'MOTO Ducati Panigale V4', price: 2100000000, horsepower: '334 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu', brand: 'ducati' },
+            'moto-mtt-420rr': { name: 'MOTO MTT 420RR', price: 5600000000, horsepower: '320 mã lực', fuel: 'Xăng', origin: 'Nhập khẩu', brand: 'mtt' }
+        };
+
+        // Back to Top functionality
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Test Drive Form submission handling
+        document.getElementById('testDriveForm').addEventListener('submit', (e) => {
+e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('testDriveName').value,
+                phone: document.getElementById('testDrivePhone').value,
+                email: document.getElementById('testDriveEmail').value,
+                vehicle: document.getElementById('testDriveVehicle').value,
+                date: document.getElementById('testDriveDate').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Retrieve existing registrations or initialize empty array
+            let registrations = JSON.parse(localStorage.getItem('testDriveRegistrations') || '[]');
+            
+            // Add new registration
+            registrations.push(formData);
+            
+            // Save to localStorage
+            localStorage.setItem('testDriveRegistrations', JSON.stringify(registrations));
+            
+            // Show confirmation
+            alert('Đăng ký lái thử đã được lưu thành công!');
+            
+            // Reset form
+            document.getElementById('testDriveForm').reset();
+        });
+
+        // Contact Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const contactData = {
+                name: document.getElementById('contactName').value,
+                phone: document.getElementById('contactPhone').value,
+                email: document.getElementById('contactEmail').value,
+                message: document.getElementById('contactMessage').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Retrieve existing contact messages or initialize empty array
+            let contacts = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+            
+            // Add new contact message
+            contacts.push(contactData);
+            
+            // Save to localStorage
+            localStorage.setItem('contactMessages', JSON.stringify(contacts));
+            
+            // Show confirmation
+            alert('Tin nhắn đã được gửi!');
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+        });
+
+        // Chatbot Logic
+        document.getElementById('chatbotToggle').addEventListener('click', () => {
+            document.getElementById('chatbotContainer').classList.toggle('active');
+        });
+
+        document.getElementById('closeChatbot').addEventListener('click', () => {
+            document.getElementById('chatbotContainer').classList.remove('active');
+        });
+
+        document.getElementById('chatbotForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            sendMessage();
+        });
+document.getElementById('chatbotInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const messages = document.getElementById('chatbotMessages');
+            const messageText = input.value.trim();
+            if (!messageText) return;
+
+            // Display user message
+            messages.innerHTML += `<div class="message user-message">${messageText}</div>`;
+            input.value = '';
+
+            // Process user query
+            const lowerMessage = messageText.toLowerCase();
+            let response = 'Xin lỗi, tôi chưa hiểu câu hỏi của bạn. Vui lòng hỏi về xe, giỏ hàng, đơn hàng, hoặc các thông tin khác!';
+
+            // Check for vehicle-related queries
+            const vehicleNames = Object.values(vehicles).map(v => v.name.toLowerCase());
+            const brands = [...new Set(Object.values(vehicles).map(v => v.brand.toLowerCase()))];
+
+            if (lowerMessage.includes('giá') || lowerMessage.includes('bao nhiêu')) {
+                for (const [id, vehicle] of Object.entries(vehicles)) {
+                    if (lowerMessage.includes(vehicle.name.toLowerCase())) {
+                        response = `Giá của ${vehicle.name} là ${vehicle.price.toLocaleString('vi-VN')} VNĐ. Bạn muốn thêm vào giỏ hàng không?`;
+                        break;
+                    }
+                }
+            } else if (lowerMessage.includes('hãng') || lowerMessage.includes('thương hiệu')) {
+                if (brands.some(brand => lowerMessage.includes(brand))) {
+                    const brand = brands.find(b => lowerMessage.includes(b));
+                    const brandVehicles = Object.values(vehicles).filter(v => v.brand.toLowerCase() === brand).map(v => v.name).join(', ');
+                    response = `Các xe của hãng ${brand.toUpperCase()}: ${brandVehicles}. Bạn muốn biết chi tiết về xe nào?`;
+                } else {
+                    response = `Chúng tôi có các hãng xe: ${brands.map(b => b.toUpperCase()).join(', ')}. Bạn muốn tìm hiểu về hãng nào?`;
+                }
+            } else if (lowerMessage.includes('danh sách xe') || lowerMessage.includes('xe nào')) {
+                const names = Object.values(vehicles).map(v => v.name).join(', ');
+                response = `Danh sách xe hiện tại: ${names}. Bạn muốn biết chi tiết về xe nào?`;
+            } else if (vehicleNames.some(name => lowerMessage.includes(name))) {
+                for (const [id, vehicle] of Object.entries(vehicles)) {
+                    if (lowerMessage.includes(vehicle.name.toLowerCase())) {
+response = `${vehicle.name}: Giá ${vehicle.price.toLocaleString('vi-VN')} VNĐ, Mã lực: ${vehicle.horsepower}, Nhiên liệu: ${vehicle.fuel}, Xuất xứ: ${vehicle.origin}. Bạn muốn thêm vào giỏ hàng không?`;
+                        break;
+                    }
+                }
+            } else if (lowerMessage.includes('giỏ hàng')) {
+                const user = JSON.parse(localStorage.getItem('user'));
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const userCart = cart.filter(item => item.user === user?.username);
+                if (!user) {
+                    response = 'Vui lòng đăng nhập để xem giỏ hàng! Bạn có muốn chuyển đến trang đăng nhập không?';
+                } else if (userCart.length === 0) {
+                    response = 'Giỏ hàng của bạn hiện đang trống. Hãy thêm xe từ danh sách để bắt đầu!';
+                } else {
+                    const cartSummary = userCart.map(item => `${item.name} (x${item.quantity}) - ${(item.price * item.quantity).toLocaleString('vi-VN')} VNĐ`).join('; ');
+                    const total = userCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                    response = `Giỏ hàng của bạn: ${cartSummary}. Tổng cộng: ${total.toLocaleString('vi-VN')} VNĐ. Bạn muốn đặt hàng ngay không?`;
+                }
+            } else if (lowerMessage.includes('đơn hàng') || lowerMessage.includes('lịch sử')) {
+                const user = JSON.parse(localStorage.getItem('user'));
+                const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                const userOrders = user?.username === 'mk' ? orders : orders.filter(order => order.username === user?.username);
+                if (!user) {
+                    response = 'Vui lòng đăng nhập để xem lịch sử đơn hàng!';
+                } else if (userOrders.length === 0) {
+                    response = 'Bạn chưa có đơn hàng nào. Hãy đặt hàng để bắt đầu!';
+                } else {
+                    const orderSummary = userOrders.map(order => `Đơn hàng ${order.id} (${order.date}): ${order.total.toLocaleString('vi-VN')} VNĐ`).join('; ');
+                    response = `Lịch sử đơn hàng của bạn: ${orderSummary}. Bạn muốn xem chi tiết đơn hàng nào?`;
+                }
+            } else if (lowerMessage.includes('khuyến mãi') || lowerMessage.includes('ưu đãi')) {
+                response = 'Hiện tại chúng tôi chưa có chương trình khuyến mãi cụ thể. Vui lòng theo dõi trang web hoặc liên hệ qua contact@luxurycar.vn để cập nhật thông tin mới nhất!';
+            } else if (lowerMessage.includes('liên hệ') || lowerMessage.includes('hỗ trợ')) {
+response = 'Bạn có thể liên hệ qua email: contact@luxurycar.vn, số điện thoại: 077******5, hoặc truy cập trang Liên hệ. Tôi có thể giúp gì thêm cho bạn?';
+            } else if (lowerMessage.includes('xin chào') || lowerMessage.includes('chào')) {
+                response = 'Chào bạn! Tôi là trợ lý ảo của Luxury Car & Moto. Hỏi tôi về xe, giỏ hàng, hoặc bất kỳ thông tin nào bạn cần nhé!';
+            } else if (lowerMessage.includes('lái thử') || lowerMessage.includes('đăng ký lái thử')) {
+                response = 'Bạn có thể đăng ký lái thử ngay trên trang này bằng cách điền thông tin vào biểu mẫu "Đăng Ký Lái Thử". Chọn xe bạn muốn thử và ngày hẹn phù hợp. Có cần tôi hướng dẫn chi tiết hơn không?';
+            }
+
+            // Display bot response
+            setTimeout(() => {
+                messages.innerHTML += `<div class="message bot-message">${response}</div>`;
+                messages.scrollTop = messages.scrollHeight; // Auto-scroll to latest message
+            }, 500);
+        }
+    </script>
+</body>
+</html>
